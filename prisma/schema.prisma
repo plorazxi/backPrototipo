@@ -19,4 +19,5 @@ model Participante {
   matricula String
   email String 
   curso String
+  evento String
 }

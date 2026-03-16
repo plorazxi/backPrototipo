@@ -27,6 +27,7 @@ nome: String
 email: String
 matricula: String
 curso: String
+evento: String
 ```
 
 ### PATCH - /
@@ -41,6 +42,7 @@ nome: String?
 email: String?
 matricula: String?
 curso: String?
+evento: String?
 ```
 
 ### DELETE - /
