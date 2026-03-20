@@ -13,11 +13,54 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Participante {
-  id Int @id @default(autoincrement())
-  nome String
-  matricula String
-  email String 
-  curso String
-  evento String
+model tb_endereco {
+  id_endereco Int           @id @default(autoincrement())
+  rua         String?       @db.VarChar(150)
+  numero      String?       @db.VarChar(10)
+  bairro      String?       @db.VarChar(100)
+  cidade      String?       @db.VarChar(100)
+  estado      String?       @db.VarChar(50)
+  cep         String?       @db.VarChar(10)
+  tipo_local  String?       @db.VarChar(50)
+  
+  inscritos   tb_inscrito[]
+  eventos     tb_evento[]
+}
+
+model tb_inscrito {
+  id_inscrito   Int          @id @default(autoincrement())
+  nome_inscrito String?      @db.VarChar(200)
+  email         String?      @db.VarChar(200)
+  curso         String?      @db.VarChar(200)
+  num_matricula String?      @db.VarChar(11)
+  id_endereco   Int?
+  
+  // Relacionamento com Endereço
+  endereco      tb_endereco? @relation(fields: [id_endereco], references: [id_endereco], onDelete: SetNull, onUpdate: Cascade)
+  
+  eventos       tb_evento[]
+}
+
+model tb_evento {
+  id_evento        Int           @id @default(autoincrement())
+  id_inscrito      Int?
+  nome_evento      String?       @db.VarChar(200)
+  centro_academico String?       @db.VarChar(40)
+  local_campus     String?       @db.VarChar(100)
+  id_endereco      Int?
+  data_evento      DateTime?     @db.Date
+  
+  // Relacionamentos
+  inscrito         tb_inscrito?  @relation(fields: [id_inscrito], references: [id_inscrito], onDelete: Cascade, onUpdate: Cascade)
+  endereco         tb_endereco?  @relation(fields: [id_endereco], references: [id_endereco], onDelete: SetNull, onUpdate: Cascade)
+  
+  destaques        tb_destaques[]
+}
+
+model tb_destaques {
+  id_destaque Int        @id @default(autoincrement())
+  id_evento   Int?
+  
+  // Relacionamento com Evento
+  evento      tb_evento? @relation(fields: [id_evento], references: [id_evento], onDelete: Cascade, onUpdate: Cascade)
 }
