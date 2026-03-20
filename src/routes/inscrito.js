@@ -42,7 +42,7 @@ router.patch('/', async (req, res) => {
         const {id, ...patchDataUser} = req.body;
         await prisma.tb_inscrito.update({
             where: {
-                id: Number(id)
+                id_inscrito: Number(id)
             },
             data: patchDataUser
         });
@@ -62,7 +62,7 @@ router.delete('/', async (req, res) => {
         const id = Number(req.body.id);
         await prisma.tb_inscrito.delete({
             where: {
-                id: id
+                id_inscrito: id
             }
         });
         return res.status(200).send({

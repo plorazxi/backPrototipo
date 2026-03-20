@@ -39,7 +39,7 @@ router.delete('/', async (req, res) => {
         const id = Number(req.body.id);
         await prisma.tb_destaques.delete({
             where: {
-                id: id
+                id_destaque: id
             }
         });
         return res.status(200).send({

@@ -42,7 +42,7 @@ router.patch('/', async (req, res) => {
         const {id, ...patchDataEvent} = req.body;
         await prisma.tb_evento.update({
             where: {
-                id: Number(id)
+                id_evento: Number(id)
             },
             data: patchDataEvent
         });
@@ -62,7 +62,7 @@ router.delete('/', async (req, res) => {
         const id = Number(req.body.id);
         await prisma.tb_evento.delete({
             where: {
-                id: id
+                id_evento: id
             }
         });
         return res.status(200).send({
