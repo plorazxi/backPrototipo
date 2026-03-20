@@ -2,6 +2,7 @@ services:
   server:
     build: .
     image: server_image:dev
+    pull_policy: never
     container_name: server_container
     restart: on-failure
     depends_on:
