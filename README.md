@@ -12,45 +12,138 @@ docker compose up
 
 ## Rotas:
 
-### GET - /
+### Inscritos:
+
+<hr>
+
+#### GET - /inscrito
 
 Lista todos os particiantes
 
-### POST - /
+#### POST - /inscrito
 
-Cria participante
+Cria inscrito
 
-#### Entrada esperada:
+##### Entrada esperada:
 
 ```
-nome: String
+nome_inscrito: String
 email: String
-matricula: String
+num_matricula: String
 curso: String
-evento: String
+endereco: Object {
+    rua: String
+    numero: String
+    bairro: String
+    cidade: String
+    estado: String
+    cep: String
+    tipo_local: String
+}
 ```
 
-### PATCH - /
+#### PATCH - /inscrito
 
-Edita o participante do `id` informado
+Edita o inscrito do `id_inscrito` informado
 
-#### Entrada esperada:
+##### Entrada esperada:
 
 ```
-id: Int
-nome: String?
+id_inscrito: Int
+nome_inscrito: String?
 email: String?
-matricula: String?
+num_matricula: String?
 curso: String?
-evento: String?
 ```
 
-### DELETE - /
+#### DELETE - /inscrito
 
-Deleta um participante
+Deleta um inscrito
 
-#### Entrada esperada:
+##### Entrada esperada:
 
 ```
-id: Int
+id_inscrito: Int
+```
+
+<hr>
+
+### Eventos:
+
+#### GET - /evento
+
+Lista todos os Eventos
+
+#### POST - /evento
+
+Cria um evento
+
+##### Entrada esperada:
+
+```
+nome_evento: String
+centro_academico: String
+local_campus: String
+data_evento: DateTime
+endereco: Object {
+    rua: String
+    numero: String
+    bairro: String
+    cidade: String
+    estado: String
+    cep: String
+    tipo_local: String
+}
+```
+
+#### PATCH - /evento
+
+Edita o evento do `id_evento` informado
+
+##### Entrada esperada:
+
+```
+id_evento: Int
+nome_evento: String?
+centro_academico: String?
+local_campus: String?
+data_evento: DateTime?
+```
+
+#### DELETE - /evento
+
+Deleta um evento
+
+##### Entrada esperada:
+
+```
+id_evento: Int
+```
+
+<hr>
+
+### Destaque
+
+#### GET - /destaque
+
+Lista todos os destaques
+
+#### POST - /destaque
+
+Cria um destaque
+
+##### Entrada esperada:
+
+```
+id_evento: Int
+```
+
+#### DELETE - /destaque
+
+Deleta um destaque
+
+##### Entrada esperada:
+
+```
+id_destaque: Int
 ```
